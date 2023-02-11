@@ -8,7 +8,7 @@ info:
 paths:
   /fahrenheit/{valor}/celsius:
     get:
-      description: "Converte de Fahrenheit para Celsius"
+      description: "Converte de Fahrenheit para Celsius!"
       produces:
       - "application/json"
       parameters:
