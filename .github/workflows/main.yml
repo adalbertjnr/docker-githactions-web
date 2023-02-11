@@ -18,10 +18,24 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
         
-      - name: building docker image
+      - name: building and pushing docker image
         uses: docker/build-push-action@v4.0.0
+        env:
+          tagVersion: "${{ github.run_number }}"
         with:
           file: Dockerfile
           push: true
-          tags: szadhub/spiritsec
+          tags: szadhub/spiritsec:${{ env.tagVersion }}
+  CD:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3.3.0
+      
+      - name: deployment      
+        uses: Azure/webapps-deploy@v2.2.6
+        with:
+          app-name: spiritsecconverter
+          publish-profile: ${{ secrets.WEBAPP }}
+          images: szadhub/spiritsec:${{ github.run_number }}
             
