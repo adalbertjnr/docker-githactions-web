@@ -15,8 +15,8 @@ jobs:
       - name: docker-creds
         uses: docker/login-action@v2.1.0
         with:
-          username: ${{ secrets.DOCKERHUB_USER }
-          password: ${{ secrets.DOCKERHUB_PASSWORD }
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
         
       - name: building docker image
         uses: docker/build-push-action@v4.0.0
